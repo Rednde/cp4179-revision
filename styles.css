@@ -1,0 +1,737 @@
+:root {
+  /* CP4179 revision site updated version: challenge quiz + 43 hard questions */
+  --ink: #16201c;
+  --muted: #5e6b65;
+  --paper: #f7f3e8;
+  --panel: #fffdf7;
+  --line: rgba(22, 32, 28, 0.14);
+  --green: #1f7a5b;
+  --blue: #285f9f;
+  --red: #c94533;
+  --yellow: #e9b949;
+  --purple: #6d5bd0;
+  --shadow: 0 1.2rem 3rem rgba(20, 36, 31, 0.13);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(31, 122, 91, 0.14), transparent 36rem),
+    linear-gradient(160deg, #f7f3e8 0%, #e8f0f5 100%);
+}
+
+button,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.study-app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
+}
+
+.sidebar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background: rgba(255, 253, 247, 0.78);
+  border-right: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.kicker {
+  margin: 0 0 0.7rem;
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin-bottom: 0.7rem;
+}
+
+p,
+li {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.lede {
+  font-size: 1.02rem;
+}
+
+.version-badge {
+  display: inline-flex;
+  margin: 0.4rem 0 0;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(233, 185, 73, 0.22);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.section-nav {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.section-nav button,
+.ghost-button,
+.choice,
+.mini-button {
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  color: var(--ink);
+  background: white;
+}
+
+.section-nav button {
+  min-height: 3.2rem;
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  font-weight: 800;
+}
+
+.section-nav button.active {
+  border-color: transparent;
+  color: white;
+  background: var(--green);
+}
+
+.score-box {
+  margin-top: auto;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: white;
+}
+
+.score-box span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.score-box strong {
+  display: block;
+  margin: 0.2rem 0 0.8rem;
+  font-size: 1.6rem;
+}
+
+.meter {
+  height: 0.6rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(22, 32, 28, 0.11);
+}
+
+.meter span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  transition: width 240ms ease;
+}
+
+.stage {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  padding: clamp(1rem, 4vw, 4rem);
+}
+
+.stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.ghost-button,
+.mini-button {
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  font-weight: 800;
+}
+
+.ghost-button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.step-count {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.lesson-card {
+  min-height: min(42rem, calc(100vh - 9rem));
+  display: grid;
+  align-content: center;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(19rem, 1.05fr);
+  gap: clamp(1.2rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(31, 122, 91, 0.12);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.visual-board,
+.quiz-box,
+.flashcard,
+.scenario-box {
+  padding: clamp(1rem, 3vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: white;
+}
+
+.sign-grid,
+.ghs-grid,
+.ppe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.pictogram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.hazard-layout,
+.hazard-cards,
+.storage-layout,
+.chemical-storage-grid,
+.hood-layout,
+.hood-grid,
+.waste-layout,
+.waste-grid,
+.material-grid,
+.compact-grid,
+.formula-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.hazard-cards,
+.chemical-storage-grid,
+.hood-grid,
+.waste-grid,
+.material-grid,
+.compact-grid,
+.formula-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.material-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.glove-grid {
+  max-height: 18rem;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.general-ppe-grid {
+  max-height: 14rem;
+  overflow: auto;
+  padding-right: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.sign,
+.ghs,
+.ppe-card,
+.pictogram-card,
+.hazard-card,
+.storage-card,
+.hood-card,
+.waste-card,
+.material-card,
+.compact-card,
+.formula-card {
+  min-height: 8rem;
+  display: grid;
+  place-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: #fbfbf8;
+  font-weight: 800;
+}
+
+.pictogram-card,
+.hazard-card,
+.storage-card,
+.hood-card,
+.waste-card,
+.material-card,
+.compact-card,
+.formula-card {
+  place-items: start;
+  align-content: start;
+  text-align: left;
+}
+
+.pictogram-card h3,
+.hazard-card h3,
+.storage-card h3,
+.hood-card h3,
+.waste-card h3,
+.material-card h3 {
+  margin-bottom: 0.1rem;
+  font-size: 1rem;
+}
+
+.pictogram-card ul,
+.storage-card ul,
+.hood-card ul,
+.waste-card ul,
+.material-card ul {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.hazard-type {
+  margin: 0;
+  color: var(--green);
+  font-weight: 900;
+}
+
+.hazard-card strong {
+  color: var(--ink);
+}
+
+.compact-card,
+.formula-card {
+  min-height: 6rem;
+}
+
+.compact-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.formula-card strong {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: white;
+  background: var(--green);
+}
+
+.formula-card span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.storage-card,
+.waste-card {
+  max-height: 19rem;
+  overflow: auto;
+}
+
+.sign {
+  align-content: start;
+}
+
+.sign p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.sign small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+button.ppe-card {
+  width: 100%;
+}
+
+.ppe-card.active {
+  border-color: transparent;
+  color: white;
+  background: var(--green);
+}
+
+.ppe-card span {
+  color: inherit;
+  opacity: 0.78;
+}
+
+.ppe-flashcard {
+  margin-top: 1rem;
+  min-height: auto;
+}
+
+.ppe-flashcard button:first-child {
+  min-height: 4rem;
+  font-size: 1.25rem;
+}
+
+.symbol {
+  display: grid;
+  place-items: center;
+  width: 4.2rem;
+  aspect-ratio: 1;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.safe .symbol {
+  background: var(--green);
+}
+
+.fire .symbol {
+  background: var(--red);
+}
+
+.mandatory .symbol {
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.prohibit .symbol {
+  color: var(--red);
+  border: 0.55rem solid var(--red);
+  border-radius: 50%;
+  background: white;
+}
+
+.warning .symbol {
+  width: 0;
+  height: 0;
+  border-left: 2.5rem solid transparent;
+  border-right: 2.5rem solid transparent;
+  border-bottom: 4.5rem solid var(--yellow);
+}
+
+.warning .symbol span {
+  position: relative;
+  top: 2rem;
+  color: var(--ink);
+}
+
+.diamond {
+  transform: rotate(45deg);
+  border: 0.35rem solid var(--red);
+  background: white;
+  color: var(--ink);
+}
+
+.diamond span {
+  transform: rotate(-45deg);
+}
+
+.choice-list {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.quiz-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: rgba(31, 122, 91, 0.08);
+}
+
+.quiz-toolbar span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.choice {
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.8rem;
+  text-align: left;
+  font-weight: 750;
+}
+
+.choice.correct {
+  border-color: transparent;
+  color: white;
+  background: var(--green);
+}
+
+.choice.wrong {
+  border-color: transparent;
+  color: white;
+  background: var(--red);
+}
+
+.typed-answer {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+  resize: vertical;
+}
+
+.multi-choice-list {
+  gap: 0.55rem;
+}
+
+.multi-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: white;
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.multi-choice input {
+  margin-top: 0.25rem;
+}
+
+.multi-choice.correct {
+  border-color: rgba(31, 122, 91, 0.5);
+  background: rgba(31, 122, 91, 0.12);
+}
+
+.multi-choice.wrong {
+  border-color: rgba(201, 69, 51, 0.55);
+  background: rgba(201, 69, 51, 0.12);
+}
+
+.feedback {
+  min-height: 4rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-left: 0.3rem solid var(--yellow);
+  background: rgba(233, 185, 73, 0.11);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.flashcard {
+  min-height: 20rem;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.flashcard button {
+  width: 100%;
+  min-height: 10rem;
+  border: 0;
+  border-radius: 0.5rem;
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  padding: 1.4rem;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 900;
+}
+
+.flashcard p {
+  min-height: 5rem;
+  margin: 1rem 0;
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.table-mini {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table-mini th,
+.table-mini td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.table-mini th {
+  color: var(--ink);
+}
+
+.sds-label {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1rem;
+  border: 0.18rem solid var(--ink);
+  background: #fff;
+}
+
+.sds-label .danger {
+  color: var(--red);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.label-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.label-slots span {
+  padding: 0.65rem;
+  border: 1px dashed rgba(22, 32, 28, 0.34);
+  border-radius: 0.35rem;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.label-table th {
+  background: rgba(31, 122, 91, 0.2);
+}
+
+.sort-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.sort-grid select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: white;
+}
+
+@media (max-width: 920px) {
+  .study-app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pictogram-grid,
+  .hazard-cards,
+  .chemical-storage-grid,
+  .hood-grid,
+  .waste-grid,
+  .material-grid,
+  .compact-grid,
+  .formula-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .sign-grid,
+  .ghs-grid,
+  .ppe-grid,
+  .label-slots,
+  .pictogram-grid,
+  .hazard-cards,
+  .chemical-storage-grid,
+  .hood-grid,
+  .waste-grid,
+  .material-grid,
+  .compact-grid,
+  .formula-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-top {
+    flex-wrap: wrap;
+  }
+
+  .quiz-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

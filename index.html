@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CP4179 Topic 1 Revision</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="study-app">
+      <aside class="sidebar" aria-label="Revision navigation">
+        <div>
+          <p class="kicker">CP4179 Topic 1</p>
+          <h1>Chemical Safety Revision</h1>
+          <p class="lede">
+            Study the key safety signs, GHS, SDS, PPE, storage, fume hood and
+            waste rules from your notes.
+          </p>
+          <p class="version-badge">Updated version: challenge quiz + 43 hard questions</p>
+        </div>
+
+        <nav class="section-nav" id="sectionNav"></nav>
+
+        <div class="score-box">
+          <span>Revision score</span>
+          <strong id="scoreText">0 / 0</strong>
+          <div class="meter" aria-hidden="true"><span id="scoreBar"></span></div>
+        </div>
+      </aside>
+
+      <section class="stage" aria-live="polite">
+        <article class="lesson-card" id="lessonCard"></article>
+
+        <div class="stage-top">
+          <button class="ghost-button" id="backButton">Back</button>
+          <div class="step-count" id="stepCount"></div>
+          <button class="ghost-button" id="nextButton">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
